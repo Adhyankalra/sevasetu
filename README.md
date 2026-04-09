@@ -36,14 +36,14 @@ A **web-based real-time queue management system** that:
 
 ## ✨ Key Features
 
-- 📲 Remote Queue Joining
-- ⏱️ Real-Time Queue Tracking
-- 🧠 Smart Queue Engine
-  - Priority handling
-  - No-show skipping
-- 📍 Department-based queueing (OPD, etc.)
-- 💊 Dispensary queue integration
-- ⚡ Scalable backend architecture
+- Remote Queue Joining
+- Real-Time Queue Tracking
+- Smart Queue Engine
+- Priority handling
+- No-show skipping
+- Department-based queueing (OPD, etc.)
+- Dispensary queue integration
+- Scalable backend architecture
 
 ---
 
@@ -96,8 +96,6 @@ A **web-based real-time queue management system** that:
 
 ---
 
-## 🧪 Getting Started
-
 ## 📈 Future Enhancements
 
     •	🔄 Real-time updates using WebSockets
@@ -111,11 +109,11 @@ A **web-based real-time queue management system** that:
 
 ## 🌍 Impact
 
-    •	⏳ Reduced waiting time
-    •	🧍 Less overcrowding
-    •	🤝 Better patient experience
-    •	⚙️ Improved hospital efficiency
-    •	📲 Inclusive access for all users
+    •	 Reduced waiting time
+    •	 Less overcrowding
+    •	 Better patient experience
+    •	 Improved hospital efficiency
+    •	 Inclusive access for all users
 
 ⸻
 
