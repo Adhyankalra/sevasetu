@@ -98,12 +98,12 @@ A **web-based real-time queue management system** that:
 
 ## 📈 Future Enhancements
 
-    •	🔄 Real-time updates using WebSockets
-    •	🗺️ Hospital navigation system
-    •	📞 Toll-free IVR-based booking
-    •	📊 AI-based wait-time prediction
-    •	📱 SMS support for rural users
-    •	🏥 Multi-hospital integration
+    •	Real-time updates using WebSockets
+    •	Hospital navigation system
+    •	Toll-free IVR-based booking
+    •	AI-based wait-time prediction
+    •	SMS support for rural users
+    •	Multi-hospital integration
 
 ⸻
 
