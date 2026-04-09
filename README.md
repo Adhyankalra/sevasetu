@@ -86,13 +86,13 @@ A **web-based real-time queue management system** that:
 
 ## 🧩 Project Structure
 
-server/
-├── config/
-├── controllers/
-├── models/
-├── routes/
-├── services/
-├── server.js
+- server/
+- ├── config/
+- ├── controllers/
+- ├── models/
+- ├── routes/
+- ├── services/
+- ├── server.js
 
 ---
 
