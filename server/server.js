@@ -7,10 +7,6 @@ const { Server } = require("socket.io");
 const connectDB = require("./config/db");
 const queueRoutes = require("./routes/queueRoutes");
 const testRoutes = require("./routes/testRoutes");
-const authRoutes = require("./routes/authRoutes");
-const hospitalRoutes = require("./routes/hospitalRoutes");
-const dispensaryRoutes = require("./routes/dispensaryRoutes");
-const { setupQueueSocket } = require("./sockets/queueSocket");
 
 dotenv.config();
 connectDB();
@@ -24,9 +20,6 @@ app.use(express.json());
 // Routes
 app.use("/api/test", testRoutes);
 app.use("/api/queue", queueRoutes);
-app.use("/api/auth", authRoutes);
-app.use("/api/hospitals", hospitalRoutes);
-app.use("/api/dispensary", dispensaryRoutes);
 
 // Root route
 app.get("/", (req, res) => {
@@ -46,7 +39,30 @@ const io = new Server(server, {
 // Make io available globally
 app.set("io", io);
 
-setupQueueSocket(io);
+// Socket connection
+io.on("connection", (socket) => {
+  console.log("User connected:", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+  });
+});
+
+// Test DB route
+const User = require("./models/User");
+
+app.get("/test-db", async (req, res) => {
+  try {
+    const user = await User.create({
+      name: "Test User",
+      phone: Date.now().toString(),
+    });
+
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // Start server
 const PORT = process.env.PORT || 5000;

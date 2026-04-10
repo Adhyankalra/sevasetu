@@ -1,121 +1,123 @@
-# Smart Queue and Navigation System for Government Hospitals
+# 🏥 Smart Hospital Queue Management System
 
-## Team
-**Foramaze**
+> Redefining patient flow in government hospitals with real-time, intelligent queue management.
 
-## Abstract
-Government hospitals in India face severe inefficiencies in patient management: long physical queues, poor real-time visibility, medicine uncertainty, and difficult on-ground navigation. Patients often arrive at 4 AM just to secure tokens, causing overcrowding and discomfort, especially for elderly and critical patients.
+---
 
-This project proposes a modular web application that digitizes end-to-end patient flow:
-- Remote and QR-based queue joining
-- Real-time queue updates and smart no-show handling
-- QR-based check-in
-- Medicine availability tracking at dispensary
-- Hospital navigation support (Google Maps-ready integration)
-- OTP-based login and future kiosk extension for non-smartphone users
-- Nearby government hospital discovery
+## 🚀 Overview
 
-## Tech Stack
-- **Frontend:** React.js + Tailwind CSS
-- **Backend:** Node.js + Express
-- **Database:** MongoDB
-- **Realtime:** Socket.IO
-- **Auth:** OTP-based verification
-- **Hosting Target:** Vercel (frontend), Node deployment for API
+Government hospitals in India face severe inefficiencies such as long queues, overcrowding, and lack of real-time information. Patients often wait for hours without visibility into their turn.
 
-## Repository Structure
+This project introduces a **digitally orchestrated queue system** that allows patients to join queues remotely, track their status live, and move efficiently through hospital departments.
 
-```text
-smart-hospital-queue/
-│
-├── client/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── QueueCard.jsx
-│   │   │   ├── QRScanner.jsx
-│   │   │   ├── Navbar.jsx
-│   │   ├── pages/
-│   │   │   ├── Home.jsx
-│   │   │   ├── Login.jsx
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── QueuePage.jsx
-│   │   │   ├── Dispensary.jsx
-│   │   ├── services/
-│   │   │   ├── api.js
-│   │   │   ├── authService.js
-│   │   │   ├── queueService.js
-│   │   ├── socket/
-│   │   │   ├── socket.js
-│   │   ├── context/
-│   │   │   ├── AuthContext.jsx
-│   │   ├── utils/
-│   │   │   ├── constants.js
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   ├── package.json
-│
-├── server/
-│   ├── config/
-│   │   ├── db.js
-│   ├── models/
-│   │   ├── User.js
-│   │   ├── Queue.js
-│   │   ├── Hospital.js
-│   │   ├── Medicine.js
-│   │   ├── Prescription.js
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── queueRoutes.js
-│   │   ├── hospitalRoutes.js
-│   │   ├── dispensaryRoutes.js
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── queueController.js
-│   │   ├── dispensaryController.js
-│   ├── services/
-│   │   ├── queueService.js
-│   │   ├── predictionService.js
-│   ├── middleware/
-│   │   ├── authMiddleware.js
-│   ├── sockets/
-│   │   ├── queueSocket.js
-│   ├── utils/
-│   │   ├── qrGenerator.js
-│   │   ├── otpService.js
-│   ├── server.js
-│   ├── package.json
-│
-├── docs/
-│   ├── architecture.png
-│   ├── api-docs.md
-│   ├── flow-diagram.png
-│
-├── .env.example
-├── README.md
-├── .gitignore
-```
+---
 
-## Quick Start
+## 🎯 Problem Statement
 
-### 1) Install dependencies
-```bash
-npm install
-npm --prefix client install
-npm --prefix server install
-```
+- Patients arrive as early as **4 AM** for tokens
+- No real-time queue visibility
+- Overcrowding and delays
+- Poor experience for elderly and critical patients
+- No integration between consultation and pharmacy
 
-### 2) Configure environment
-Copy `.env.example` values into your runtime environment.
+---
 
-### 3) Run
-```bash
-npm --prefix server run dev
-npm --prefix client start
-```
+## 💡 Solution
 
-## Impact
-- Reduces waiting time and overcrowding
-- Improves transparency in government hospital queues
-- Makes care journey easier via navigation and dispensary visibility
-- Provides scalable architecture for pilot-to-city expansion
+A **web-based real-time queue management system** that:
+
+- Enables **remote & QR-based queue joining**
+- Provides **live queue status and wait-time estimation**
+- Implements **smart queue logic (priority + no-show handling)**
+- Supports **QR-based check-in**
+- Integrates **dispensary (pharmacy) workflow**
+
+---
+
+## ✨ Key Features
+
+- Remote Queue Joining
+- Real-Time Queue Tracking
+- Smart Queue Engine
+- Priority handling
+- No-show skipping
+- Department-based queueing (OPD, etc.)
+- Dispensary queue integration
+- Scalable backend architecture
+
+---
+
+## 🧠 System Flow
+
+- User → Join Queue → Live Status → Check-in → Consultation → Prescription → Dispensary Queue → Medicine Pickup
+
+---
+
+## 🏗️ Tech Stack
+
+**Backend**
+
+- Node.js
+- Express.js
+
+**Database**
+
+- MongoDB (Atlas)
+
+**Architecture**
+
+- REST APIs
+- MVC Pattern
+- Service Layer (Queue Engine)
+
+---
+
+## ⚙️ API Endpoints
+
+### Queue Management
+
+| Method | Endpoint                  | Description      |
+| ------ | ------------------------- | ---------------- |
+| POST   | /api/queue/join           | Join queue       |
+| GET    | /api/queue/status/:userId | Get queue status |
+| POST   | /api/queue/checkin        | Check-in user    |
+
+---
+
+## 🧩 Project Structure
+
+- server/
+- ├── config/
+- ├── controllers/
+- ├── models/
+- ├── routes/
+- ├── services/
+- ├── server.js
+
+---
+
+## 📈 Future Enhancements
+
+    •	Real-time updates using WebSockets
+    •	Hospital navigation system
+    •	Toll-free IVR-based booking
+    •	AI-based wait-time prediction
+    •	SMS support for rural users
+    •	Multi-hospital integration
+
+⸻
+
+## 🌍 Impact
+
+    •	 Reduced waiting time
+    •	 Less overcrowding
+    •	 Better patient experience
+    •	 Improved hospital efficiency
+    •	 Inclusive access for all users
+
+⸻
+
+## 🧠 Innovation
+
+- Unlike traditional appointment systems, this solution focuses on real-time queue orchestration, bridging digital access with physical
+- hospital workflows.
