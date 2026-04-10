@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 
 const JoinQueue = ({ setUserId }) => {
-  const [input, setInput] = useState("");
-
   const handleJoin = async () => {
     try {
       // Step 1: Create user automatically
@@ -12,8 +10,8 @@ const JoinQueue = ({ setUserId }) => {
       const userId = userRes.data._id;
 
       // Step 2: Join queue
-      await axios.post("/api/queue/join", {
-        userId: input,
+      await axios.post("http://localhost:5000/api/queue/join", {
+        userId,
         department: "OPD",
         isPriority: false,
       });
@@ -27,14 +25,14 @@ const JoinQueue = ({ setUserId }) => {
   };
 
   return (
-    <div>
-      <h2>Join Queue</h2>
-      <input
-        placeholder="Enter User ID"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <button onClick={handleJoin}>Join</button>
+    <div className="mb-4 rounded-lg bg-slate-800 p-4 shadow-lg">
+      <h2 className="mb-3 text-xl font-semibold">Join Queue</h2>
+      <button
+        onClick={handleJoin}
+        className="rounded bg-emerald-500 px-4 py-2 font-medium text-slate-900 hover:bg-emerald-400"
+      >
+        Join
+      </button>
     </div>
   );
 };
