@@ -1,35 +1,25 @@
 const mongoose = require("mongoose");
 
-const queueSchema = new mongoose.Schema(
-  {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-    department: {
-      type: String, // OPD, Dentist, etc.
-    },
-    position: Number,
-
-    status: {
-      type: String,
-      enum: ["waiting", "called", "checked-in", "completed", "skipped"],
-      default: "waiting",
-    },
-
-    isPriority: {
-      type: Boolean,
-      default: false,
-    },
-
-    joinedAt: {
-      type: Date,
-      default: Date.now,
-    },
-
-    checkedInAt: Date,
+const queueSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+    trim: true,
   },
-  { timestamps: true },
-);
+  department: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  status: {
+    type: String,
+    enum: ["waiting", "checked-in", "done"],
+    default: "waiting",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 module.exports = mongoose.model("Queue", queueSchema);
