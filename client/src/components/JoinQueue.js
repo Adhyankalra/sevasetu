@@ -25,14 +25,9 @@ const JoinQueue = ({ setUserId }) => {
   };
 
   return (
-    <div className="mb-4 rounded-lg bg-slate-800 p-4 shadow-lg">
-      <h2 className="mb-3 text-xl font-semibold">Join Queue</h2>
-      <button
-        onClick={handleJoin}
-        className="rounded bg-emerald-500 px-4 py-2 font-medium text-slate-900 hover:bg-emerald-400"
-      >
-        Join
-      </button>
+    <div>
+      <h2>Join Queue</h2>
+      <button onClick={handleJoin}>Join</button>
     </div>
   );
 };
