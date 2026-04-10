@@ -6,8 +6,10 @@ function App() {
   const [userId, setUserId] = useState("");
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>🏥 Smart Hospital Queue System</h1>
+    <div className="min-h-screen bg-slate-900 p-6 text-white">
+      <h1 className="mb-4 text-3xl font-bold text-emerald-400">
+        🏥 Smart Hospital Queue System
+      </h1>
 
       <JoinQueue setUserId={setUserId} />
 
@@ -17,4 +19,3 @@ function App() {
 }
 
 export default App;
-<div className="bg-red-500 text-white p-5 text-2xl">Tailwind Working 🚀</div>;
