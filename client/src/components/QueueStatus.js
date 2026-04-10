@@ -23,8 +23,22 @@ const QueueStatus = ({ userId }) => {
   }, [userId]);
 
   useEffect(() => {
+    if (!userId) return;
+
+    // initial fetch
     fetchStatus();
-  }, [fetchStatus]);
+
+    // listen for updates
+    socket.on("queueUpdated", (data) => {
+      if (data.userId === userId) {
+        setStatus(data);
+      }
+    });
+
+    return () => {
+      socket.off("queueUpdated");
+    };
+  }, [userId]);
 
   useEffect(() => {
     socket.on("queueUpdated", fetchStatus);
