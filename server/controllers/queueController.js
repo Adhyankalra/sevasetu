@@ -11,6 +11,10 @@ const joinQueue = async (req, res) => {
 
     const entry = await addToQueue(userId, department, isPriority);
 
+    // 🔥 Emit update
+    const io = req.app.get("io");
+    io.emit("queueUpdated", { department });
+
     res.json(entry);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -36,6 +40,9 @@ const checkInUser = async (req, res) => {
     const { userId } = req.body;
 
     const entry = await checkIn(userId);
+
+    const io = req.app.get("io");
+    io.emit("queueUpdated", { department: entry.department });
 
     res.json(entry);
   } catch (error) {
