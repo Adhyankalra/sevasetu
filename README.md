@@ -1,123 +1,87 @@
-# 🏥 Smart Hospital Queue Management System
+# SevaSetu (MERN + Socket.io)
 
-> Redefining patient flow in government hospitals with real-time, intelligent queue management.
+SevaSetu is a full-stack healthcare web application with **two completely separate services**:
 
----
+1. **Queue Management System (Hospitals)**
+2. **Medicine Finder System (Pharmacies)**
 
-## 🚀 Overview
+## Tech Stack
 
-Government hospitals in India face severe inefficiencies such as long queues, overcrowding, and lack of real-time information. Patients often wait for hours without visibility into their turn.
+- **Frontend:** React (Vite), Tailwind CSS, Axios, Socket.io-client
+- **Backend:** Node.js, Express, MongoDB (Mongoose), Socket.io, CORS, dotenv
 
-This project introduces a **digitally orchestrated queue system** that allows patients to join queues remotely, track their status live, and move efficiently through hospital departments.
+## Project Structure
 
----
+```txt
+root/
+ ├── client/   # React frontend (Vite + Tailwind)
+ ├── server/   # Node.js + Express backend
+ └── README.md
+```
 
-## 🎯 Problem Statement
+## Backend API
 
-- Patients arrive as early as **4 AM** for tokens
-- No real-time queue visibility
-- Overcrowding and delays
-- Poor experience for elderly and critical patients
-- No integration between consultation and pharmacy
+### Queue APIs
 
----
+- `POST /api/queue/join`
+  - body: `{ "userId": "U123", "department": "General" }`
+  - returns queue position
 
-## 💡 Solution
+- `GET /api/queue/status/:userId`
+  - returns:
+    ```json
+    {
+      "position": 2,
+      "peopleAhead": 1,
+      "status": "waiting"
+    }
+    ```
 
-A **web-based real-time queue management system** that:
+- `GET /api/queue/list`
+  - returns all waiting users sorted by `createdAt` (FIFO)
 
-- Enables **remote & QR-based queue joining**
-- Provides **live queue status and wait-time estimation**
-- Implements **smart queue logic (priority + no-show handling)**
-- Supports **QR-based check-in**
-- Integrates **dispensary (pharmacy) workflow**
+- `POST /api/queue/checkin`
+  - marks first waiting user as `checked-in`
+  - emits socket event: `queueUpdated`
 
----
+### Medicine API
 
-## ✨ Key Features
+- `GET /api/medicine/search?name=paracetamol`
+  - returns mocked pharmacy results with distance and maps link
 
-- Remote Queue Joining
-- Real-Time Queue Tracking
-- Smart Queue Engine
-- Priority handling
-- No-show skipping
-- Department-based queueing (OPD, etc.)
-- Dispensary queue integration
-- Scalable backend architecture
+## Setup Instructions
 
----
+### 1) Backend
 
-## 🧠 System Flow
+```bash
+cd server
+npm install
+```
 
-- User → Join Queue → Live Status → Check-in → Consultation → Prescription → Dispensary Queue → Medicine Pickup
+Create `server/.env`:
 
----
+```env
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/sevasetu
+CLIENT_URL=http://localhost:5173
+```
 
-## 🏗️ Tech Stack
+Run backend:
 
-**Backend**
+```bash
+npm run dev
+```
 
-- Node.js
-- Express.js
+### 2) Frontend
 
-**Database**
+```bash
+cd client
+npm install
+npm run dev
+```
 
-- MongoDB (Atlas)
+Frontend runs at `http://localhost:5173` and backend at `http://localhost:5000`.
 
-**Architecture**
+## Real-time Updates
 
-- REST APIs
-- MVC Pattern
-- Service Layer (Queue Engine)
-
----
-
-## ⚙️ API Endpoints
-
-### Queue Management
-
-| Method | Endpoint                  | Description      |
-| ------ | ------------------------- | ---------------- |
-| POST   | /api/queue/join           | Join queue       |
-| GET    | /api/queue/status/:userId | Get queue status |
-| POST   | /api/queue/checkin        | Check-in user    |
-
----
-
-## 🧩 Project Structure
-
-- server/
-- ├── config/
-- ├── controllers/
-- ├── models/
-- ├── routes/
-- ├── services/
-- ├── server.js
-
----
-
-## 📈 Future Enhancements
-
-    •	Real-time updates using WebSockets
-    •	Hospital navigation system
-    •	Toll-free IVR-based booking
-    •	AI-based wait-time prediction
-    •	SMS support for rural users
-    •	Multi-hospital integration
-
-⸻
-
-## 🌍 Impact
-
-    •	 Reduced waiting time
-    •	 Less overcrowding
-    •	 Better patient experience
-    •	 Improved hospital efficiency
-    •	 Inclusive access for all users
-
-⸻
-
-## 🧠 Innovation
-
-- Unlike traditional appointment systems, this solution focuses on real-time queue orchestration, bridging digital access with physical
-- hospital workflows.
+Socket.io is initialized on the server and emits `queueUpdated` whenever queue state changes. The frontend listens to this event and automatically refreshes queue list and status.

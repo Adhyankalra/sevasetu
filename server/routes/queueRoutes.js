@@ -1,19 +1,16 @@
 const express = require("express");
-const router = express.Router();
-
 const {
   joinQueue,
   getStatus,
+  getQueueList,
   checkInUser,
 } = require("../controllers/queueController");
 
-// POST /api/queue/join
+const router = express.Router();
+
 router.post("/join", joinQueue);
-
-// GET /api/queue/status/:userId
 router.get("/status/:userId", getStatus);
-
-// POST /api/queue/checkin
+router.get("/list", getQueueList);
 router.post("/checkin", checkInUser);
 
 module.exports = router;
